@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name AP2112K-3.3TRG1)(type Legacy)(uri ${KIPRJMOD}/AP2112K-3.3TRG1.mod)(options "")(descr ""))
+  (lib (name PTS810_SJM_250_SMTR_LFS)(type Legacy)(uri ${KIPRJMOD}/PTS810_SJM_250_SMTR_LFS.mod)(options "")(descr ""))
+)
