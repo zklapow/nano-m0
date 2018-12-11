@@ -6,3 +6,4 @@ set mem inaccessible-by-default off
 attach 1
 
 #file target/thumbv6m-none-eabi/debug/examples/usb
+load
