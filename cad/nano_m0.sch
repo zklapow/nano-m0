@@ -324,72 +324,27 @@ OSC_IN
 Text Label 7500 3650 0    50   ~ 0
 OSC_OUT
 $Comp
-L device:Crystal Y1
-U 1 1 5C0B9A41
-P 8450 5550
-F 0 "Y1" V 8404 5681 50  0000 L CNN
-F 1 "16MHz" V 8495 5681 50  0000 L CNN
-F 2 "Crystals:Crystal_SMD_Abracon_ABM3B-4pin_5.0x3.2mm" H 8450 5550 50  0001 C CNN
-F 3 "" H 8450 5550 50  0001 C CNN
-	1    8450 5550
-	0    1    1    0   
-$EndComp
-$Comp
-L device:C C3
-U 1 1 5C0B9AAF
-P 7950 5400
-F 0 "C3" V 7698 5400 50  0000 C CNN
-F 1 "15pF" V 7789 5400 50  0000 C CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 7988 5250 50  0001 C CNN
-F 3 "" H 7950 5400 50  0001 C CNN
-	1    7950 5400
-	0    1    1    0   
-$EndComp
-$Comp
 L device:C C4
 U 1 1 5C0B9AFF
-P 7950 5700
-F 0 "C4" V 7698 5700 50  0000 C CNN
-F 1 "15pF" V 7789 5700 50  0000 C CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 7988 5550 50  0001 C CNN
-F 3 "" H 7950 5700 50  0001 C CNN
-	1    7950 5700
-	0    1    1    0   
+P 8050 5650
+F 0 "C4" V 7798 5650 50  0000 C CNN
+F 1 ".01uF" V 7889 5650 50  0000 C CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 8088 5500 50  0001 C CNN
+F 3 "" H 8050 5650 50  0001 C CNN
+	1    8050 5650
+	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0111
 U 1 1 5C0B9B4D
-P 7550 5900
-F 0 "#PWR0111" H 7550 5650 50  0001 C CNN
-F 1 "GND" H 7555 5727 50  0000 C CNN
-F 2 "" H 7550 5900 50  0001 C CNN
-F 3 "" H 7550 5900 50  0001 C CNN
-	1    7550 5900
+P 8750 6100
+F 0 "#PWR0111" H 8750 5850 50  0001 C CNN
+F 1 "GND" H 8755 5927 50  0000 C CNN
+F 2 "" H 8750 6100 50  0001 C CNN
+F 3 "" H 8750 6100 50  0001 C CNN
+	1    8750 6100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7800 5400 7550 5400
-Wire Wire Line
-	7550 5400 7550 5700
-Wire Wire Line
-	7800 5700 7550 5700
-Connection ~ 7550 5700
-Wire Wire Line
-	7550 5700 7550 5900
-Wire Wire Line
-	8450 5400 8100 5400
-Wire Wire Line
-	8450 5700 8100 5700
-Wire Wire Line
-	8450 5400 9000 5400
-Connection ~ 8450 5400
-Wire Wire Line
-	8450 5700 9000 5700
-Connection ~ 8450 5700
-Text Label 8750 5400 0    50   ~ 0
-OSC_IN
-Text Label 8700 5700 0    50   ~ 0
-OSC_OUT
 Wire Wire Line
 	9800 4050 10500 4050
 Text Label 10400 4050 0    50   ~ 0
@@ -474,7 +429,7 @@ Text Label 5700 2100 0    50   ~ 0
 PA0
 Wire Notes Line
 	6700 600  6700 2300
-Text Notes 5850 750  0    50   ~ 0
+Text Notes 6450 750  0    50   ~ 0
 LEDs
 Wire Wire Line
 	9800 3750 10500 3750
@@ -1162,4 +1117,53 @@ Wire Notes Line
 	4400 600  6700 600 
 Wire Notes Line
 	4400 2300 6700 2300
+$Comp
+L Oscillators:ASE-xxxMHz X1
+U 1 1 5C1A2FB8
+P 8750 5650
+F 0 "X1" H 9091 5696 50  0000 L CNN
+F 1 "ASE-xxxMHz" H 9091 5605 50  0000 L CNN
+F 2 "Crystals:Crystal_SMD_Abracon_ABM3B-4pin_5.0x3.2mm" H 9450 5300 50  0001 C CNN
+F 3 "http://www.abracon.com/Oscillators/ASV.pdf" H 8650 5650 50  0001 C CNN
+	1    8750 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8750 5350 8050 5350
+Wire Wire Line
+	8050 5350 8050 5500
+Wire Wire Line
+	8050 5800 8050 5950
+Wire Wire Line
+	8050 5950 8750 5950
+Wire Wire Line
+	8750 5950 8750 6100
+Connection ~ 8750 5950
+$Comp
+L power:+3.3V #PWR07
+U 1 1 5C1B9503
+P 8750 5100
+F 0 "#PWR07" H 8750 4950 50  0001 C CNN
+F 1 "+3.3V" H 8765 5273 50  0000 C CNN
+F 2 "" H 8750 5100 50  0001 C CNN
+F 3 "" H 8750 5100 50  0001 C CNN
+	1    8750 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8750 5100 8750 5150
+Connection ~ 8750 5350
+Wire Wire Line
+	8450 5650 8350 5650
+Wire Wire Line
+	8350 5650 8350 5150
+Wire Wire Line
+	8350 5150 8750 5150
+Connection ~ 8750 5150
+Wire Wire Line
+	8750 5150 8750 5350
+Wire Wire Line
+	9050 5650 9550 5650
+Text Label 9300 5650 0    50   ~ 0
+OSC_IN
 $EndSCHEMATC
