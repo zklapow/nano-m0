@@ -15,13 +15,14 @@ use cortex_m::{asm, peripheral::syst::SystClkSource};
 use cortex_m_rt::entry;
 use rtfm::app;
 
-use stm32f0x0_hal::{
+use stm32f0::stm32f0x0;
+
+use stm32f0xx_hal::{
     delay::Delay,
     gpio::{gpioa, Output, PushPull},
     prelude::*,
     rcc::ClockSource,
-    stm32f0::stm32f0x0,
-    timer,
+    timers,
 };
 
 const MAX_DUTY_CYCLE: u32 = 64;
@@ -35,7 +36,7 @@ pub enum PulseDirection {
 const APP: () = {
     static mut LED0: gpioa::PA0<Output<PushPull>> = ();
     static mut LED1: gpioa::PA1<Output<PushPull>> = ();
-    static mut TIMER: timer::Timer<stm32f0x0::TIM16> = ();
+    static mut TIMER: timers::Timer<stm32f0x0::TIM16> = ();
     static mut PWM_TIMER: stm32f0x0::TIM3 = ();
     static mut COUNTER: usize = 0;
     static mut DUTY: u32 = 0;
@@ -45,22 +46,22 @@ const APP: () = {
     fn init() {
         let dp: stm32f0::stm32f0x0::Peripherals = device;
 
-        let mut flash = dp.FLASH.constrain();
-        let mut rcc: stm32f0x0_hal::rcc::Rcc = dp.RCC.constrain();
-        let mut gpioa: gpioa::Parts = dp.GPIOA.split(&mut rcc.ahb);
+        let mut rcc: stm32f0xx_hal::rcc::Rcc = dp.RCC.constrain();
+        let mut gpioa: gpioa::Parts = dp.GPIOA.split();
 
         let clocks = rcc.cfgr
             .sysclk(16.mhz())
-            .freeze(ClockSource::HSI, &mut flash.acr);
+            .clock_source(ClockSource::HSI)
+            .freeze();
 
-        let led = gpioa.pa0.into_push_pull_output(&mut gpioa.moder, &mut gpioa.otyper);
-        let led1 = gpioa.pa1.into_push_pull_output(&mut gpioa.moder, &mut gpioa.otyper);
+        let led = gpioa.pa0.into_push_pull_output();
+        let led1 = gpioa.pa1.into_push_pull_output();
 
         //let mut pwm_out = gpioa.pa6.into_push_pull_output(&mut gpioa.moder, &mut gpioa.otyper);
         //pwm_out.set_high();
-        let pwm_out = gpioa.pa6.into_af1(&mut gpioa.moder, &mut gpioa.afrl);
+        let pwm_out = gpioa.pa6.into_alternate_af1();
 
-        timer::Timer::<stm32f0x0::TIM3>::tim3en(&mut rcc.apb1);
+        timers::Timer::<stm32f0x0::TIM3>::tim3en();
 
         let pwm_timer = dp.TIM3;
 
@@ -118,9 +119,9 @@ const APP: () = {
             w.ug().set_bit()
         });
 
-        let mut tim16 = timer::Timer::<stm32f0x0::TIM16>::tim16(dp.TIM16, 5.hz(), clocks, &mut rcc.apb2);
+        let mut tim16 = timers::Timer::<stm32f0x0::TIM16>::tim16(dp.TIM16, 5.hz(), clocks);
 
-        tim16.listen(timer::Event::TimeOut);
+        tim16.listen(timers::Event::TimeOut);
 
         LED0 = led;
         LED1 = led1;
