@@ -4,10 +4,10 @@
 #[macro_use]
 extern crate nb;
 // pick a panicking behavior
-//extern crate panic_halt; // you can put a breakpoint on `rust_begin_unwind` to catch panics
+extern crate panic_halt; // you can put a breakpoint on `rust_begin_unwind` to catch panics
 // extern crate panic_abort; // requires nightly
 // extern crate panic_itm; // logs messages over ITM; requires ITM support
-extern crate panic_semihosting;
+//extern crate panic_semihosting;
 
 // logs messages to the host stderr; requires a debugger
 
@@ -24,12 +24,22 @@ use stm32f0x0_hal::{
     timer,
 };
 
+const MAX_DUTY_CYCLE: u32 = 64;
+
+pub enum PulseDirection {
+    Up,
+    Down
+}
+
 #[app(device = stm32f0::stm32f0x0)]
 const APP: () = {
     static mut LED0: gpioa::PA0<Output<PushPull>> = ();
     static mut LED1: gpioa::PA1<Output<PushPull>> = ();
     static mut TIMER: timer::Timer<stm32f0x0::TIM16> = ();
+    static mut PWM_TIMER: stm32f0x0::TIM3 = ();
     static mut COUNTER: usize = 0;
+    static mut DUTY: u32 = 0;
+    static mut DIRECTION: PulseDirection = PulseDirection::Up;
 
     #[init]
     fn init() {
@@ -46,34 +56,38 @@ const APP: () = {
         let led = gpioa.pa0.into_push_pull_output(&mut gpioa.moder, &mut gpioa.otyper);
         let led1 = gpioa.pa1.into_push_pull_output(&mut gpioa.moder, &mut gpioa.otyper);
 
+        //let mut pwm_out = gpioa.pa6.into_push_pull_output(&mut gpioa.moder, &mut gpioa.otyper);
+        //pwm_out.set_high();
         let pwm_out = gpioa.pa6.into_af1(&mut gpioa.moder, &mut gpioa.afrl);
 
         timer::Timer::<stm32f0x0::TIM3>::tim3en(&mut rcc.apb1);
 
+        let pwm_timer = dp.TIM3;
+
         // Set prescaler
-        // (i.e. divide clock by 16, 16mhz/16 = 1mhz)
-        dp.TIM3.psc.write(|w| {
+        // (i.e. divide clock by 16, 16mhz/8 = 2mhz)
+        pwm_timer.psc.write(|w| {
             unsafe {
-                w.bits(15)
+                w.bits(31)
             }
         });
 
         // Set period
-        dp.TIM3.arr.write(|w| {
+        pwm_timer.arr.write(|w| {
             unsafe {
-                w.bits(8)
+                w.bits(MAX_DUTY_CYCLE)
             }
         });
 
         // Set Duty Cycle
-        dp.TIM3.ccr1.write(|w| {
+        pwm_timer.ccr1.write(|w| {
             unsafe {
-                w.bits(2)
+                w.bits(0)
             }
         });
 
         // Set PWM mode
-        dp.TIM3.ccmr1_output.write(|w| {
+        pwm_timer.ccmr1_output.write(|w| {
             unsafe {
                 w.oc1pe().set_bit();
                 w.oc1m().bits(0b00000110)
@@ -81,17 +95,17 @@ const APP: () = {
         });
 
         // Set normally high
-        dp.TIM3.ccer.write(|w| {
+        pwm_timer.ccer.write(|w| {
             w.cc1e().set_bit()
         });
 
         // Enable output
-//        dp.TIM3.bdtr.write(|w| {
+//        pwm_timer.bdtr.write(|w| {
 //            w.moe().set_bit()
 //        });
 
         // Enable counter in center aligned mode
-        dp.TIM3.cr1.write(|w| {
+        pwm_timer.cr1.write(|w| {
             unsafe {
                 w
                     .cms().bits(0b00000001)
@@ -100,7 +114,7 @@ const APP: () = {
         });
 
         // Force update generation
-        dp.TIM3.egr.write(|w| {
+        pwm_timer.egr.write(|w| {
             w.ug().set_bit()
         });
 
@@ -111,6 +125,7 @@ const APP: () = {
         LED0 = led;
         LED1 = led1;
         TIMER = tim16;
+        PWM_TIMER = pwm_timer;
     }
 
     #[idle]
@@ -118,7 +133,7 @@ const APP: () = {
         loop {}
     }
 
-    #[interrupt(resources = [LED0, LED1, COUNTER, TIMER])]
+    #[interrupt(resources = [LED0, LED1, COUNTER, TIMER, PWM_TIMER, DUTY, DIRECTION])]
     fn TIM16() {
         block!(resources.TIMER.wait()).expect("Timer wait failed");
 
@@ -128,6 +143,25 @@ const APP: () = {
             resources.LED1.toggle();
         }
 
+        let cur_duty: u32 = *resources.DUTY;
+        if cur_duty >= MAX_DUTY_CYCLE {
+            *resources.DIRECTION = PulseDirection::Down;
+        } else if cur_duty <= 0 {
+            *resources.DIRECTION = PulseDirection::Up;
+        }
+
+        resources.PWM_TIMER.ccr1.write(|w| {
+            unsafe {
+                w.bits(*resources.DUTY)
+            }
+        });
+
         *resources.COUNTER += 1;
+
+        let dir: &mut PulseDirection = resources.DIRECTION;
+        match dir {
+            PulseDirection::Up => *resources.DUTY += 2,
+            PulseDirection::Down => *resources.DUTY -= 2,
+        }
     }
 };
