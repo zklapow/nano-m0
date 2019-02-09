@@ -323,28 +323,6 @@ Text Label 7500 3550 0    50   ~ 0
 OSC_IN
 Text Label 7500 3650 0    50   ~ 0
 OSC_OUT
-$Comp
-L device:C C4
-U 1 1 5C0B9AFF
-P 8050 5650
-F 0 "C4" V 7798 5650 50  0000 C CNN
-F 1 ".01uF" V 7889 5650 50  0000 C CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 8088 5500 50  0001 C CNN
-F 3 "" H 8050 5650 50  0001 C CNN
-	1    8050 5650
-	-1   0    0    1   
-$EndComp
-$Comp
-L power:GND #PWR0111
-U 1 1 5C0B9B4D
-P 8750 6100
-F 0 "#PWR0111" H 8750 5850 50  0001 C CNN
-F 1 "GND" H 8755 5927 50  0000 C CNN
-F 2 "" H 8750 6100 50  0001 C CNN
-F 3 "" H 8750 6100 50  0001 C CNN
-	1    8750 6100
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	9800 4050 10500 4050
 Text Label 10400 4050 0    50   ~ 0
@@ -628,45 +606,16 @@ Wire Wire Line
 Wire Wire Line
 	4300 6800 4300 7100
 $Comp
-L power:VBUS #PWR0119
-U 1 1 5C0FFED2
-P 4100 900
-F 0 "#PWR0119" H 4100 750 50  0001 C CNN
-F 1 "VBUS" H 4115 1073 50  0000 C CNN
-F 2 "" H 4100 900 50  0001 C CNN
-F 3 "" H 4100 900 50  0001 C CNN
-	1    4100 900 
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:VBUS #PWR0120
-U 1 1 5C0FFF4F
-P 3250 6100
-F 0 "#PWR0120" H 3250 5950 50  0001 C CNN
-F 1 "VBUS" H 3265 6273 50  0000 C CNN
-F 2 "" H 3250 6100 50  0001 C CNN
-F 3 "" H 3250 6100 50  0001 C CNN
-	1    3250 6100
-	1    0    0    -1  
-$EndComp
-$Comp
 L device:Polyfuse F1
 U 1 1 5C102DC5
-P 3750 6400
-F 0 "F1" V 3525 6400 50  0000 C CNN
-F 1 "500mA" V 3616 6400 50  0000 C CNN
-F 2 "Fuse_Holders_and_Fuses:Fuse_SMD1206_HandSoldering" H 3800 6200 50  0001 L CNN
-F 3 "" H 3750 6400 50  0001 C CNN
-	1    3750 6400
+P 4150 6400
+F 0 "F1" V 3925 6400 50  0000 C CNN
+F 1 "500mA" V 4016 6400 50  0000 C CNN
+F 2 "Fuse_Holders_and_Fuses:Fuse_SMD1206_HandSoldering" H 4200 6200 50  0001 L CNN
+F 3 "" H 4150 6400 50  0001 C CNN
+	1    4150 6400
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	4300 6400 3900 6400
-Connection ~ 4300 6400
-Wire Wire Line
-	3600 6400 3250 6400
-Wire Wire Line
-	3250 6400 3250 6100
 Wire Notes Line
 	11000 6350 11000 2800
 Wire Notes Line
@@ -742,10 +691,6 @@ F 3 "" H 6100 5350 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5650 3950 6100 3950
-Text Label 5950 5250 0    50   ~ 0
-BOOT
-Text Label 5950 5150 0    50   ~ 0
-NRST
 Text Label 5950 5050 0    50   ~ 0
 PA0
 Text Label 5950 4950 0    50   ~ 0
@@ -859,19 +804,6 @@ Text Label 5850 3650 0    50   ~ 0
 USB_P
 Text Label 5850 3550 0    50   ~ 0
 USB_N
-Wire Wire Line
-	4300 6400 4500 6400
-$Comp
-L power:+5V #PWR03
-U 1 1 5C1ACFC1
-P 4500 6050
-F 0 "#PWR03" H 4500 5900 50  0001 C CNN
-F 1 "+5V" H 4515 6223 50  0000 C CNN
-F 2 "" H 4500 6050 50  0001 C CNN
-F 3 "" H 4500 6050 50  0001 C CNN
-	1    4500 6050
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:+5V #PWR04
 U 1 1 5C1AD01C
@@ -883,11 +815,6 @@ F 3 "" H 6100 5450 50  0001 C CNN
 	1    6100 5450
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	4500 6050 4500 6400
-Connection ~ 4500 6400
-Wire Wire Line
-	4500 6400 4650 6400
 $Comp
 L Connector:Conn_ARM_JTAG_SWD_10 J4
 U 1 1 5C0CD059
@@ -901,17 +828,6 @@ F 3 "http://infocenter.arm.com/help/topic/com.arm.doc.faqs/attached/13634/cortex
 $EndComp
 Wire Wire Line
 	3800 3700 3800 3500
-$Comp
-L power:+3.3V #PWR02
-U 1 1 5C0D1FE8
-P 3800 3500
-F 0 "#PWR02" H 3800 3350 50  0001 C CNN
-F 1 "+3.3V" H 3815 3673 50  0000 C CNN
-F 2 "" H 3800 3500 50  0001 C CNN
-F 3 "" H 3800 3500 50  0001 C CNN
-	1    3800 3500
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4300 4000 4600 4000
 Text Label 4450 4000 0    50   ~ 0
@@ -1117,53 +1033,121 @@ Wire Notes Line
 	4400 600  6700 600 
 Wire Notes Line
 	4400 2300 6700 2300
+Wire Wire Line
+	4300 6400 4650 6400
+Connection ~ 4300 6400
 $Comp
-L Oscillators:ASE-xxxMHz X1
-U 1 1 5C1A2FB8
-P 8750 5650
-F 0 "X1" H 9091 5696 50  0000 L CNN
-F 1 "ASE-xxxMHz" H 9091 5605 50  0000 L CNN
-F 2 "Crystals:Crystal_SMD_Abracon_ABM3B-4pin_5.0x3.2mm" H 9450 5300 50  0001 C CNN
-F 3 "http://www.abracon.com/Oscillators/ASV.pdf" H 8650 5650 50  0001 C CNN
-	1    8750 5650
+L power:+5V #PWR03
+U 1 1 5C21F9EA
+P 3750 6100
+F 0 "#PWR03" H 3750 5950 50  0001 C CNN
+F 1 "+5V" H 3765 6273 50  0000 C CNN
+F 2 "" H 3750 6100 50  0001 C CNN
+F 3 "" H 3750 6100 50  0001 C CNN
+	1    3750 6100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8750 5350 8050 5350
+	3750 6100 3750 6400
 Wire Wire Line
-	8050 5350 8050 5500
-Wire Wire Line
-	8050 5800 8050 5950
-Wire Wire Line
-	8050 5950 8750 5950
-Wire Wire Line
-	8750 5950 8750 6100
-Connection ~ 8750 5950
+	4000 6400 3750 6400
 $Comp
-L power:+3.3V #PWR07
-U 1 1 5C1B9503
-P 8750 5100
-F 0 "#PWR07" H 8750 4950 50  0001 C CNN
-F 1 "+3.3V" H 8765 5273 50  0000 C CNN
-F 2 "" H 8750 5100 50  0001 C CNN
-F 3 "" H 8750 5100 50  0001 C CNN
-	1    8750 5100
+L device:Crystal Y1
+U 1 1 5C2C7904
+P 8600 5450
+F 0 "Y1" H 8600 5718 50  0000 C CNN
+F 1 "Crystal" H 8600 5627 50  0000 C CNN
+F 2 "Crystals:Crystal_SMD_SeikoEpson_TSX3225-4pin_3.2x2.5mm_HandSoldering" H 8600 5450 50  0001 C CNN
+F 3 "" H 8600 5450 50  0001 C CNN
+	1    8600 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:C C3
+U 1 1 5C2DD2F3
+P 8350 5750
+F 0 "C3" H 8465 5796 50  0000 L CNN
+F 1 "22pF" H 8465 5705 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 8388 5600 50  0001 C CNN
+F 3 "" H 8350 5750 50  0001 C CNN
+	1    8350 5750
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:C C4
+U 1 1 5C2DD35B
+P 8850 5750
+F 0 "C4" H 8965 5796 50  0000 L CNN
+F 1 "22pF" H 8965 5705 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 8888 5600 50  0001 C CNN
+F 3 "" H 8850 5750 50  0001 C CNN
+	1    8850 5750
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8750 5100 8750 5150
-Connection ~ 8750 5350
+	8750 5450 8850 5450
 Wire Wire Line
-	8450 5650 8350 5650
+	8850 5450 8850 5600
 Wire Wire Line
-	8350 5650 8350 5150
+	8450 5450 8350 5450
 Wire Wire Line
-	8350 5150 8750 5150
-Connection ~ 8750 5150
+	8350 5450 8350 5600
 Wire Wire Line
-	8750 5150 8750 5350
+	8350 5450 8350 5000
+Connection ~ 8350 5450
 Wire Wire Line
-	9050 5650 9550 5650
-Text Label 9300 5650 0    50   ~ 0
+	8850 5450 8850 5000
+Connection ~ 8850 5450
+Text Label 8350 5000 0    50   ~ 0
 OSC_IN
+Text Label 8850 5000 0    50   ~ 0
+OSC_OUT
+$Comp
+L power:GND #PWR07
+U 1 1 5C2F3150
+P 8600 6050
+F 0 "#PWR07" H 8600 5800 50  0001 C CNN
+F 1 "GND" H 8605 5877 50  0000 C CNN
+F 2 "" H 8600 6050 50  0001 C CNN
+F 3 "" H 8600 6050 50  0001 C CNN
+	1    8600 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8850 5900 8850 6000
+Wire Wire Line
+	8850 6000 8600 6000
+Wire Wire Line
+	8600 6000 8600 6050
+Wire Wire Line
+	8350 5900 8350 6000
+Wire Wire Line
+	8350 6000 8600 6000
+Connection ~ 8600 6000
+$Comp
+L power:+5V #PWR0111
+U 1 1 5C304EC4
+P 4100 900
+F 0 "#PWR0111" H 4100 750 50  0001 C CNN
+F 1 "+5V" H 4115 1073 50  0000 C CNN
+F 2 "" H 4100 900 50  0001 C CNN
+F 3 "" H 4100 900 50  0001 C CNN
+	1    4100 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR0119
+U 1 1 5C3052E4
+P 3800 3500
+F 0 "#PWR0119" H 3800 3350 50  0001 C CNN
+F 1 "+3.3V" H 3815 3673 50  0000 C CNN
+F 2 "" H 3800 3500 50  0001 C CNN
+F 3 "" H 3800 3500 50  0001 C CNN
+	1    3800 3500
+	1    0    0    -1  
+$EndComp
+Text Label 5950 5150 0    50   ~ 0
+BOOT
+Text Label 5950 5250 0    50   ~ 0
+NRST
 $EndSCHEMATC
