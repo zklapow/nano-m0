@@ -48,7 +48,7 @@ F 3 "" H 7300 1600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R3
+L nano_m0-rescue:R-device R3
 U 1 1 5C0B5007
 P 7750 1750
 F 0 "R3" H 7820 1796 50  0000 L CNN
@@ -111,7 +111,7 @@ $EndComp
 Wire Wire Line
 	9800 1450 10100 1450
 $Comp
-L device:R R4
+L nano_m0-rescue:R-device R4
 U 1 1 5C0B57F1
 P 10100 1200
 F 0 "R4" H 10170 1246 50  0000 L CNN
@@ -122,7 +122,7 @@ F 3 "" H 10100 1200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C7
+L nano_m0-rescue:C-device C7
 U 1 1 5C0B5846
 P 10350 1700
 F 0 "C7" H 10465 1746 50  0000 L CNN
@@ -223,7 +223,7 @@ F 3 "" H 10000 4750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C6
+L nano_m0-rescue:C-device C6
 U 1 1 5C0B7322
 P 10300 5550
 F 0 "C6" H 10415 5596 50  0000 L CNN
@@ -234,7 +234,7 @@ F 3 "" H 10300 5550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C5
+L nano_m0-rescue:C-device C5
 U 1 1 5C0B7397
 P 9900 5550
 F 0 "C5" H 10015 5596 50  0000 L CNN
@@ -317,7 +317,7 @@ PA0
 Text Label 7500 4050 0    50   ~ 0
 PA1
 $Comp
-L device:LED D1
+L nano_m0-rescue:LED-device D1
 U 1 1 5C0C1A5D
 P 4600 1300
 F 0 "D1" V 4638 1183 50  0000 R CNN
@@ -328,7 +328,7 @@ F 3 "~" H 4600 1300 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R1
+L nano_m0-rescue:R-device R1
 U 1 1 5C0C1B92
 P 4600 1750
 F 0 "R1" H 4670 1796 50  0000 L CNN
@@ -491,7 +491,7 @@ F 3 "" H 6000 6150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C2
+L nano_m0-rescue:C-device C2
 U 1 1 5C0EEF05
 P 6300 6650
 F 0 "C2" H 6415 6696 50  0000 L CNN
@@ -536,7 +536,7 @@ Wire Wire Line
 	4650 6600 4650 6400
 Connection ~ 4650 6400
 $Comp
-L device:C C1
+L nano_m0-rescue:C-device C1
 U 1 1 5C0FA4CC
 P 4300 6650
 F 0 "C1" H 4415 6696 50  0000 L CNN
@@ -562,7 +562,7 @@ Wire Wire Line
 Wire Wire Line
 	4300 6800 4300 7100
 $Comp
-L device:Polyfuse F1
+L nano_m0-rescue:Polyfuse-device F1
 U 1 1 5C102DC5
 P 4150 6400
 F 0 "F1" V 3925 6400 50  0000 C CNN
@@ -666,7 +666,7 @@ PA14
 Text Label 5950 3750 0    50   ~ 0
 PA13
 $Comp
-L Connector:Conn_01x10 J2
+L nano_m0-rescue:Conn_01x10-Connector J2
 U 1 1 5C16ACC6
 P 5450 5050
 F 0 "J2" H 5370 4325 50  0000 C CNN
@@ -677,7 +677,7 @@ F 3 "~" H 5450 5050 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Connector:Conn_01x10 J1
+L nano_m0-rescue:Conn_01x10-Connector J1
 U 1 1 5C16AD71
 P 5450 3650
 F 0 "J1" H 5370 2925 50  0000 C CNN
@@ -852,7 +852,7 @@ F 3 "" H 5350 1000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R2
+L nano_m0-rescue:R-device R2
 U 1 1 5C0C7FC9
 P 5350 1750
 F 0 "R2" H 5420 1796 50  0000 L CNN
@@ -863,7 +863,7 @@ F 3 "" H 5350 1750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:LED D2
+L nano_m0-rescue:LED-device D2
 U 1 1 5C0C7FC2
 P 5350 1300
 F 0 "D2" V 5388 1183 50  0000 R CNN
@@ -889,7 +889,7 @@ F 3 "" H 6100 1000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R5
+L nano_m0-rescue:R-device R5
 U 1 1 5C0DF2B9
 P 6100 1750
 F 0 "R5" H 6170 1796 50  0000 L CNN
@@ -900,7 +900,7 @@ F 3 "" H 6100 1750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:LED D3
+L nano_m0-rescue:LED-device D3
 U 1 1 5C0DF2C0
 P 6100 1300
 F 0 "D3" V 6138 1183 50  0000 R CNN
@@ -924,7 +924,7 @@ $EndComp
 Wire Wire Line
 	6100 1900 6100 2050
 $Comp
-L device:R R6
+L nano_m0-rescue:R-device R6
 U 1 1 5C0F1F04
 P 8300 1400
 F 0 "R6" H 8370 1446 50  0000 L CNN
@@ -981,7 +981,7 @@ Wire Wire Line
 Wire Wire Line
 	4000 6400 3750 6400
 $Comp
-L device:Crystal Y1
+L nano_m0-rescue:Crystal-device Y1
 U 1 1 5C2C7904
 P 8600 5450
 F 0 "Y1" H 8600 5718 50  0000 C CNN
@@ -992,7 +992,7 @@ F 3 "" H 8600 5450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C3
+L nano_m0-rescue:C-device C3
 U 1 1 5C2DD2F3
 P 8350 5750
 F 0 "C3" H 8465 5796 50  0000 L CNN
@@ -1003,7 +1003,7 @@ F 3 "" H 8350 5750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C4
+L nano_m0-rescue:C-device C4
 U 1 1 5C2DD35B
 P 8850 5750
 F 0 "C4" H 8965 5796 50  0000 L CNN

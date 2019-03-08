@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name SMT32F070F6P6)(type Legacy)(uri ${KIPRJMOD}/SMT32F070F6P6.lib)(options "")(descr ""))
   (lib (name AP2112K-3.3TRG1)(type Legacy)(uri ${KIPRJMOD}/AP2112K-3.3TRG1.lib)(options "")(descr ""))
+  (lib (name nano_m0-rescue)(type Legacy)(uri ${KIPRJMOD}/nano_m0-rescue.lib)(options "")(descr ""))
 )
